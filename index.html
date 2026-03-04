@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certification BRIO — Amcor Flexibles Mohammedia</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Bibliothèque pour générer le PDF (non utilisée mais conservée pour compatibilité) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+  :root {
+    --primary: #0B2E5F; --primary-mid: #1A4E8C; --primary-light: #2D72D2;
+    --accent: #E8760A; --accent-light: #F59637; --teal: #00A3A3;
+    --green: #0F7E4A; --green-bg: #E6F5EE; --red: #C0392B; --red-bg: #FDEEEC;
+    --text: #0D1F33; --text-mid: #3D5670; --text-muted: #6B85A0;
+    --border: #D0DDE8; --bg: #EEF3F9; --bg-card: #FFFFFF;
+    --shadow: 0 2px 16px rgba(11,46,95,0.09); --shadow-lg: 0 8px 40px rgba(11,46,95,0.15);
+    --radius: 14px; --radius-sm: 8px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "DM Sans", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.55; background-image: radial-gradient(ellipse at 80% 0%, rgba(45,114,210,0.08) 0%, transparent 55%), radial-gradient(ellipse at 10% 100%, rgba(11,46,95,0.06) 0%, transparent 45%); }
+  .topbar { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 100%); padding: 0 48px; height: 76px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 20px rgba(11,46,95,0.3); position: sticky; top: 0; z-index: 100; }
+  .topbar-left { display: flex; align-items: center; gap: 20px; }
+  .logo-wrap { background: white; border-radius: 10px; padding: 5px 12px; display: flex; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .logo-img { height: 38px; width: auto; display: block; }
+  .divider-line { width: 1px; height: 36px; background: rgba(255,255,255,0.25); }
+  .site-name { font-family: "Sora", sans-serif; font-size: 15px; font-weight: 700; color: #FFFFFF; letter-spacing: 0.3px; line-height: 1.2; }
+  .site-name span { display: block; font-weight: 400; font-size: 11px; color: rgba(255,255,255,0.65); letter-spacing: 1.5px; text-transform: uppercase; font-family: "DM Sans", sans-serif; margin-top: 2px; }
+  .topbar-badge { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 6px 16px; font-size: 12px; color: rgba(255,255,255,0.9); font-weight: 500; letter-spacing: 0.3px; }
+  .topbar-badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-light); flex-shrink: 0; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.85); } }
+  .wrapper { max-width: 820px; margin: 0 auto; padding: 44px 24px 90px; }
+  #form-screen { animation: fadeUp 0.5s ease; }
+  .form-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 48px 52px; box-shadow: var(--shadow-lg); position: relative; overflow: hidden; }
+  .form-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--teal)); }
+  .form-logo-header { display: flex; align-items: center; gap: 18px; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .form-logo-box { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 8px 16px; display: flex; align-items: center; }
+  .form-logo-box img { height: 44px; width: auto; }
+  .form-company-name { font-family: "Sora", sans-serif; font-size: 16px; font-weight: 700; color: var(--primary); }
+  .form-company-name span { display: block; font-size: 11px; font-weight: 400; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+  .form-title { font-family: "Sora", sans-serif; font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 8px; }
+  .form-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 12px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-mid); }
+  .form-group input, .form-group select { padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 14.5px; font-family: "DM Sans", sans-serif; color: var(--text); background: var(--bg); outline: none; transition: border-color 0.2s; }
+  .form-group input:focus, .form-group select:focus { border-color: var(--primary-light); background: #fff; }
+  .datetime-display { background: linear-gradient(135deg, rgba(11,46,95,0.04), rgba(45,114,210,0.06)); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 28px; display: flex; align-items: center; gap: 16px; }
+  .datetime-icon { font-size: 28px; }
+  .datetime-vals { display: flex; gap: 24px; }
+  .datetime-item label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 2px; }
+  .datetime-item span { font-family: "Sora", sans-serif; font-size: 16px; font-weight: 700; color: var(--primary); }
+  .page-header { margin-bottom: 36px; display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+  .page-header-text h1 { font-family: "Sora", sans-serif; font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 6px; }
+  .page-header-text p { font-size: 13.5px; color: var(--text-muted); max-width: 440px; line-height: 1.5; }
+  .amcor-emblem { width: 52px; height: 52px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 14px rgba(11,46,95,0.25); }
+  .stats-row { display: flex; gap: 14px; margin-bottom: 28px; }
+  .stat-box { flex: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+  .stat-box::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; border-radius: 0 0 var(--radius) var(--radius); }
+  .stat-box.s-blue::after { background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
+  .stat-box.s-green::after { background: linear-gradient(90deg, var(--green), var(--teal)); }
+  .stat-box.s-orange::after { background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
+  .stat-box.s-red::after { background: linear-gradient(90deg, var(--red), #e74c3c); }
+  .stat-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 19px; flex-shrink: 0; }
+  .stat-icon.blue { background: linear-gradient(135deg, rgba(11,46,95,0.08), rgba(45,114,210,0.12)); }
+  .stat-icon.green { background: linear-gradient(135deg, rgba(15,126,74,0.08), rgba(0,163,163,0.12)); }
+  .stat-icon.orange { background: linear-gradient(135deg, rgba(232,118,10,0.1), rgba(245,150,55,0.15)); }
+  .stat-icon.red { background: linear-gradient(135deg, rgba(192,57,43,0.1), rgba(231,76,60,0.15)); }
+  .stat-label { font-size: 10.5px; color: var(--text-muted); letter-spacing: 0.8px; text-transform: uppercase; font-weight: 600; margin-bottom: 2px; }
+  .stat-value { font-family: "Sora", sans-serif; font-size: 22px; font-weight: 800; color: var(--text); line-height: 1; }
+  .progress-block { margin-bottom: 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 20px; box-shadow: var(--shadow); }
+  .progress-meta { display: flex; justify-content: space-between; align-items: center; font-size: 12px; margin-bottom: 10px; }
+  .progress-meta span:first-child { color: var(--text-mid); font-weight: 600; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .prog-counter { font-family: "Sora", sans-serif; font-size: 13px; font-weight: 700; color: var(--primary-light); }
+  .progress-track { height: 7px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--teal)); border-radius: 4px; width: 0%; transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .timer-block { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .timer-label { font-size: 12px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); }
+  .timer-track { flex: 1; height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; }
+  .timer-fill { height: 100%; border-radius: 5px; transition: width 1s linear, background 0.5s; width: 100%; }
+  .timer-num { font-family: "Sora", sans-serif; font-size: 18px; font-weight: 800; min-width: 28px; text-align: right; }
+  .timer-num.urgent { color: var(--red); animation: blink 0.5s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .question-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px 44px; margin-bottom: 20px; box-shadow: var(--shadow-lg); animation: fadeUp 0.38s cubic-bezier(0.23, 1, 0.32, 1); position: relative; overflow: hidden; }
+  .question-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 60%, var(--teal) 100%); border-radius: 5px 0 0 5px; }
+  .q-num-bg { position: absolute; right: -10px; top: -10px; font-family: "Sora", sans-serif; font-size: 90px; font-weight: 800; color: rgba(11,46,95,0.04); line-height: 1; user-select: none; pointer-events: none; }
+  .q-module-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 8px; }
+  .q-module-tag.module-brio { background: rgba(0,163,163,0.1); color: var(--teal); border: 1px solid rgba(0,163,163,0.25); }
+  .q-module-tag.module-auto { background: rgba(232,118,10,0.1); color: var(--accent); border: 1px solid rgba(232,118,10,0.25); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .q-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--primary-light); background: rgba(45,114,210,0.1); border: 1px solid rgba(45,114,210,0.2); padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; }
+  .question-text { font-size: 17.5px; font-weight: 600; color: var(--text); margin-bottom: 30px; line-height: 1.55; }
+  .options { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .option { display: flex; align-items: flex-start; gap: 14px; padding: 15px 20px; border: 1.5px solid var(--border); border-radius: 10px; cursor: pointer; transition: all 0.18s ease; background: var(--bg-card); }
+  .option:hover { border-color: var(--primary-light); background: rgba(45,114,210,0.04); transform: translateX(4px); box-shadow: 0 2px 12px rgba(45,114,210,0.1); }
+  .opt-letter { width: 32px; height: 32px; min-width: 32px; border-radius: 8px; background: var(--bg); border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12.5px; color: var(--text-mid); transition: all 0.18s; font-family: "Sora", sans-serif; margin-top: 1px; }
+  .opt-text { font-size: 14.5px; color: var(--text); line-height: 1.5; padding-top: 2px; }
+  .option.correct { border-color: var(--green); background: var(--green-bg); transform: none; }
+  .option.correct .opt-letter { background: var(--green); border-color: var(--green); color: #fff; }
+  .option.wrong { border-color: var(--red); background: var(--red-bg); transform: none; }
+  .option.wrong .opt-letter { background: var(--red); border-color: var(--red); color: #fff; }
+  .option.disabled { cursor: default; }
+  .option.disabled:hover { transform: none; box-shadow: none; border-color: var(--border); background: var(--bg-card); }
+  .option.correct.disabled:hover { border-color: var(--green); background: var(--green-bg); }
+  .option.wrong.disabled:hover { border-color: var(--red); background: var(--red-bg); }
+  .option.timeout { border-color: #f0a500; background: #fff8e6; transform: none; }
+  .option.timeout .opt-letter { background: #f0a500; border-color: #f0a500; color: #fff; }
+  .explanation { margin-top: 24px; padding: 18px 22px; background: linear-gradient(135deg, rgba(11,46,95,0.04), rgba(45,114,210,0.06)); border-left: 4px solid var(--primary-light); border-radius: 0 10px 10px 0; display: none; animation: fadeUp 0.3s ease; }
+  .exp-label { font-size: 10.5px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--primary); margin-bottom: 7px; display: flex; align-items: center; gap: 6px; }
+  .explanation p { font-size: 14px; color: var(--text-mid); line-height: 1.65; }
+  .nav-row { display: flex; justify-content: space-between; align-items: center; }
+  .btn { font-family: "Sora", sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.3px; padding: 13px 30px; border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s ease; }
+  .btn-outline { background: var(--bg-card); color: var(--primary); border: 1.5px solid var(--border); }
+  .btn-outline:hover { border-color: var(--primary); background: rgba(11,46,95,0.04); }
+  .btn-outline:disabled { opacity: 0.3; cursor: default; }
+  .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #fff; box-shadow: 0 4px 16px rgba(11,46,95,0.28); }
+  .btn-primary:hover { background: linear-gradient(135deg, var(--primary-mid), var(--primary-light)); box-shadow: 0 6px 24px rgba(11,46,95,0.38); transform: translateY(-1px); }
+  .nav-status { font-size: 13px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+  #score-screen { display: none; animation: fadeUp 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
+  .score-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 60px 52px; text-align: center; box-shadow: var(--shadow-lg); position: relative; overflow: hidden; }
+  .score-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--teal)); }
+  .score-ring { width: 170px; height: 170px; margin: 0 auto 40px; position: relative; filter: drop-shadow(0 6px 20px rgba(11,46,95,0.18)); }
+  .score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .score-ring circle { fill: none; stroke-width: 11; }
+  .ring-track { stroke: var(--border); }
+  .ring-fill { stroke: var(--primary); stroke-dasharray: 440; stroke-dashoffset: 440; stroke-linecap: round; transition: stroke-dashoffset 1.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .score-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .score-num { font-family: "Sora", sans-serif; font-size: 50px; font-weight: 800; color: var(--text); line-height: 1; }
+  .score-den { font-size: 14px; color: var(--text-muted); margin-top: 2px; font-weight: 500; }
+  .score-title { font-family: "Sora", sans-serif; font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 12px; }
+  .score-msg { font-size: 15.5px; color: var(--text-mid); max-width: 440px; margin: 0 auto 40px; line-height: 1.65; }
+  .chips-row { display: flex; justify-content: center; gap: 12px; margin-bottom: 44px; flex-wrap: wrap; }
+  .chip { padding: 10px 24px; border-radius: 10px; font-size: 13.5px; font-weight: 700; font-family: "Sora", sans-serif; }
+  .chip-green { background: var(--green-bg); color: var(--green); border: 1.5px solid rgba(15,126,74,0.25); }
+  .chip-red { background: var(--red-bg); color: var(--red); border: 1.5px solid rgba(192,57,43,0.2); }
+  .chip-blue { background: rgba(45,114,210,0.1); color: var(--primary-light); border: 1.5px solid rgba(45,114,210,0.2); }
+  .score-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-green { background: linear-gradient(135deg, var(--green), var(--teal)); color: #fff; box-shadow: 0 4px 16px rgba(15,126,74,0.28); padding: 15px 36px; font-size: 14px; }
+  .btn-green:hover { box-shadow: 0 6px 24px rgba(15,126,74,0.38); transform: translateY(-1px); }
+  .btn-download { background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: #fff; box-shadow: 0 4px 16px rgba(11,46,95,0.28); padding: 15px 36px; font-size: 14px; }
+  .btn-download:hover { background: linear-gradient(135deg, var(--primary-mid), var(--primary-light)); box-shadow: 0 6px 24px rgba(11,46,95,0.38); transform: translateY(-1px); }
+  @media print { body { background: white !important; } .topbar, #form-screen, #quiz-section, #score-screen { display: none !important; } #print-fiche { display: block !important; } }
+  #print-fiche { display: none; }
+  @media (max-width: 620px) { .topbar { padding: 0 16px; height: 68px; } .topbar-badge { display: none; } .question-card { padding: 26px 22px; } .stats-row { flex-wrap: wrap; } .score-card { padding: 36px 22px; } .wrapper { padding: 24px 16px 70px; } .page-header { flex-direction: column; } .amcor-emblem { display: none; } .form-grid { grid-template-columns: 1fr; } .form-card { padding: 28px 22px; } }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo-wrap"><img class="logo-img" src="data:image/jpeg;base64,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" alt="Amcor Flexibles">
+    </div>
+    <div class="divider-line"></div>
+    <div class="site-name">Amcor Flexibles<span>Mohammedia · Maroc</span></div>
+  </div>
+  <div class="topbar-badge">Certification Opérationnelle · Imprimeuse BRIO</div>
+</div>
+
+<div class="wrapper" id="form-screen">
+  <div class="form-card">
+    <div class="form-logo-header">
+      <div class="form-logo-box"><img class="logo-img" src="data:image/jpeg;base64,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" alt="Amcor Flexibles"></div>
+      <div class="form-company-name">Amcor Flexibles<span>Mohammedia · Maroc</span></div>
+    </div>
+    <div class="form-title">🖨️ Certification BRIO — Identification</div>
+    <div class="form-sub">Veuillez renseigner vos informations avant de démarrer le quiz.</div>
+    <div class="datetime-display">
+      <div class="datetime-icon">🗓️</div>
+      <div class="datetime-vals">
+        <div class="datetime-item"><label>Date</label><span id="form-date">—</span></div>
+        <div class="datetime-item"><label>Heure</label><span id="form-time">—</span></div>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="form-group"><label>Nom complet *</label><input type="text" id="f-nom" placeholder="Ex : Mohamed Alami" required></div>
+      <div class="form-group"><label>Matricule *</label><input type="text" id="f-matricule" placeholder="Ex : AMC-2024-007" required></div>
+      <div class="form-group"><label>Poste / Fonction *</label><input type="text" id="f-poste" placeholder="Ex : Conducteur Imprimeuse" required></div>
+      <div class="form-group"><label>Équipe *</label>
+        <select id="f-equipe" required>
+          <option value="">— Sélectionner —</option>
+          <option>Équipe A (Matin)</option>
+          <option>Équipe B (Après-midi)</option>
+          <option>Équipe C (Nuit)</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Responsable de Production *</label><input type="text" id="f-responsable" placeholder="Nom du responsable de production" required></div>
+      <div class="form-group"><label>Département *</label><input type="text" id="f-dept" placeholder="Ex : Production Flexibles" value="Production Flexibles" required></div>
+    </div>
+    <button class="btn btn-primary" onclick="startQuiz()" style="width:100%; padding:16px; font-size:15px;">🚀 Démarrer la certification (40 questions · 15 s / question)</button>
+  </div>
+</div>
+
+<div class="wrapper" id="quiz-section" style="display:none;">
+  <div class="page-header">
+    <div class="page-header-text">
+      <h1>Certification Opérationnelle — BRIO</h1>
+      <p>40 questions · 15 secondes par question · Répondez avant la fin du compte à rebours.</p>
+    </div>
+    <div class="amcor-emblem">🖨️</div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box s-blue"><div class="stat-icon blue">📋</div><div><div class="stat-label">Total</div><div class="stat-value" id="stat-total">40</div></div></div>
+    <div class="stat-box s-green"><div class="stat-icon green">✅</div><div><div class="stat-label">Correctes</div><div class="stat-value" id="stat-correct">0</div></div></div>
+    <div class="stat-box s-red"><div class="stat-icon red">❌</div><div><div class="stat-label">Fausses</div><div class="stat-value" id="stat-wrong">0</div></div></div>
+    <div class="stat-box s-orange"><div class="stat-icon orange">🎯</div><div><div class="stat-label">Score</div><div class="stat-value" id="stat-pct">—</div></div></div>
+  </div>
+  <div class="progress-block">
+    <div class="progress-meta"><span>Progression</span><span class="prog-counter" id="prog-label">1 / 40</span></div>
+    <div class="progress-track"><div class="progress-fill" id="prog-fill"></div></div>
+  </div>
+  <div class="timer-block">
+    <span class="timer-label">⏱ Temps</span>
+    <div class="timer-track"><div class="timer-fill" id="timer-fill" style="background: var(--green);"></div></div>
+    <span class="timer-num" id="timer-num">15</span>
+  </div>
+  <div class="question-card" id="question-card">
+    <div class="q-num-bg" id="q-num-bg">01</div>
+    <div id="q-module-tag" class="q-module-tag module-brio">🖨️ Module BRIO</div>
+    <div class="q-tag" id="q-tag">Question 01 / 40</div>
+    <div class="question-text" id="question-text"></div>
+    <ul class="options" id="options-list"></ul>
+    <div class="explanation" id="explanation"><div class="exp-label">💡 Explication</div><p id="exp-text"></p></div>
+  </div>
+  <div class="nav-row">
+    <button class="btn btn-outline" id="prev-btn" onclick="changeQuestion(-1)" disabled>← Précédent</button>
+    <span class="nav-status" id="nav-status"></span>
+    <button class="btn btn-primary" id="next-btn" onclick="changeQuestion(1)">Suivant →</button>
+  </div>
+</div>
+
+<div class="wrapper" id="score-screen">
+  <div class="score-card">
+    <div class="score-ring">
+      <svg viewBox="0 0 160 160"><circle class="ring-track" cx="80" cy="80" r="70"/><circle class="ring-fill" id="ring-fill" cx="80" cy="80" r="70"/></svg>
+      <div class="score-center"><div class="score-num" id="sc-num">0</div><div class="score-den" id="sc-den">/ 40</div></div>
+    </div>
+    <div class="score-title" id="sc-title">Résultat</div>
+    <div class="score-msg" id="sc-msg"></div>
+    <div class="chips-row">
+      <div class="chip chip-green" id="chip-ok">✓ 0 correctes</div>
+      <div class="chip chip-red" id="chip-ko">✗ 0 incorrectes</div>
+      <div class="chip chip-blue" id="chip-pct">0%</div>
+    </div>
+    <div class="score-btns">
+      <!-- Bouton unique : impression via iframe -->
+      <button class="btn btn-green" onclick="downloadFiche('print')">📥 Télécharger / Imprimer</button>
+      <!-- Le bouton de téléchargement PDF a été supprimé -->
+      <button class="btn btn-primary" onclick="restart()">🔄 Revenir au quiz</button>
+    </div>
+  </div>
+</div>
+
+<!-- iframe cachée pour l'impression -->
+<iframe id="printFrame" src="about:blank" style="position:absolute; width:0; height:0; border:none; visibility:hidden;"></iframe>
+
+<script>
+const TIMER_DURATION = 15;
+const BASE_QUESTIONS = [
+  { m:'brio', q:"Quels sont les EPI (Équipements de Protection Individuelle) obligatoires lors du déchargement d'une bobine sur la BRIO ?", opts:["Chaussures de sécurité et gants de manutention uniquement","Casque, lunettes, gants anti-coupure, bouchons d'oreilles et chaussures de sécurité","Lunettes, gilet de sécurité et chaussures de sécurité uniquement"], c:1, exp:"L'ensemble des EPI est obligatoire conjointement : casque de protection (risque de chute d'objets lors du déchargement), lunettes de protection (projections), gants anti-coupure (manipulation), bouchons d'oreilles (bruit machine) et chaussures de sécurité (écrasement)." },
+  { m:'brio', q:"Combien d'échantillons doivent être prélevés lors du déchargement pour le contrôle qualité ?", opts:["Un seul, conservé par le conducteur","Trois exemplaires pour différents services","Deux : un pour le service qualité, un pour le conducteur"], c:2, exp:"La procédure prévoit deux prélèvements : l'un transmis au service qualité pour analyse, l'autre conservé par le conducteur comme référence." },
+  { m:'brio', q:"Que doit-on impérativement retirer avant de procéder à l'emballage de la bobine ?", opts:["L'arbre expansible","Tout déchet éventuel présent","Le ruban adhésif de fermeture"], c:1, exp:"Tout déchet doit être retiré avant l'emballage pour éviter la contamination du produit fini et garantir la conformité qualité." },
+  { m:'brio', q:"Quelle est la fonction du 'Sipon' (clé BTR) dans les moyens utilisés ?", opts:["Mesurer la tension du film","Assurer les fixations mécaniques lors du chargement/déchargement","Nettoyer le cylindre héliogravure"], c:1, exp:"La clé BTR est un outil de fixation mécanique utilisé lors des opérations de chargement et déchargement des bobines et cylindres." },
+  { m:'brio', q:"Quelle action permet d'évacuer l'air sous pression de l'arbre expansible ?", opts:["Serrer les paliers de blocage","Dégonfler l'arbre pour libérer la pression","Retirer le bout d'arbre manuellement"], c:1, exp:"Le dégonflage de l'arbre est l'étape qui libère l'air comprimé, permettant ensuite le retrait de la bobine en toute sécurité." },
+  { m:'brio', q:"Quel composant empêche l'arbre de tourner dans le vide lors du démontage ?", opts:["La bague d'étanchéité","Le cône de centrage","La clavette d'immobilisation"], c:2, exp:"La clavette est l'élément mécanique spécifiquement conçu pour empêcher la rotation libre de l'arbre pendant le démontage." },
+  { m:'brio', q:"Quel est l'ordre correct de retrait des composants lors du démontage du cylindre ?", opts:["Clavette → Bague → Cône","Cône → Bague → Clavette","Bout d'arbre → Clavette → Bague → Cône"], c:2, exp:"La procédure officielle impose l'ordre : retrait du bout d'arbre, puis de la clavette, de la bague, et enfin du cône." },
+  { m:'brio', q:"Sur quelle branche doit-on monter la bobine lors de l'embarquement ?", opts:["Branche 1 (dérouleur principal)","Branche 2 (selon la procédure standard)","La branche de secours"], c:1, exp:"L'instruction d'embarquement spécifie le montage sur la branche 2, conformément à la procédure opérationnelle standard." },
+  { m:'brio', q:"Que faut-il obligatoirement faire avant l'opération de changement de bobine ?", opts:["Augmenter la pression d'encre","Réduire la vitesse de la machine","Arrêter le système de séchage"], c:1, exp:"La réduction de vitesse avant tout changement de bobine est une règle de sécurité fondamentale pour prévenir les accidents." },
+  { m:'brio', q:"Quelle couleur doit afficher le voyant du bouton de coupe pour autoriser le lancement ?", opts:["Rouge (machine prête)","Vert (coupe activée)","Bleu (standby)"], c:1, exp:"Le voyant vert sur le bouton de coupe confirme l'activation correcte du système et autorise le lancement de la production." },
+  { m:'brio', q:"Quel EPI est absolument indispensable lors du retrait de la racle ?", opts:["Lunettes anti-projections","Gants anti-coupure certifiés","Masque respiratoire FFP2"], c:1, exp:"La racle est une lame tranchante. Les gants anti-coupure sont l'EPI prioritaire pour manipuler cet élément en toute sécurité." },
+  { m:'brio', q:"Pourquoi faut-il brancher les pinces de mise à la terre lors du démontage ?", opts:["Pour alimenter la pompe à encre en courant","Pour évacuer l'électricité statique et prévenir les incendies","Pour bloquer mécaniquement le chariot"], c:1, exp:"L'électricité statique accumulée sur les films et encres est une source d'inflammation. La mise à la terre dissipe cette charge dangereuse." },
+  { m:'brio', q:"Quel bouton active le système de bridage (blocage) du chariot ?", opts:["Bouton 'Bridage chariot hors'","Bouton 'Chariot en'","Bouton 'Fixation roue'"], c:1, exp:"Le bouton 'Chariot en' commande le système de bridage qui immobilise le chariot en position de travail." },
+  { m:'brio', q:"Quelle est la condition d'état requise pour les anti-jets lors du montage ?", opts:["Ils doivent être peints en couleur de sécurité","Ils doivent être toujours propres et exempts de résidus","Ils doivent être en matière plastique homologuée"], c:1, exp:"La propreté permanente des anti-jets est requise pour garantir leur efficacité de protection et éviter la contamination de l'encre." },
+  { m:'brio', q:"Que faut-il saisir sur les pupitres des automates avant tout réglage ?", opts:["Le nom et matricule du conducteur","Les données de développement du travail","La température et hygrométrie ambiantes"], c:1, exp:"Les données de développement (longueur, laize, repérage…) doivent être enregistrées dans l'automate pour configurer correctement la machine." },
+  { m:'brio', q:"À quoi sert la fonction 'Barbotage' en vitesse rapide ?", opts:["À nettoyer le cylindre héliogravure","À alimenter et homogénéiser le circuit d'encre","À sécher le support imprimé"], c:1, exp:"Le barbotage en vitesse rapide permet de faire circuler l'encre dans tout le circuit pour assurer une alimentation homogène et éviter la décantation." },
+  { m:'brio', q:"Que faut-il impérativement vérifier lors du réglage de la racle ?", opts:["Que le presseur n'est pas en contact avec la bavette","Que la température de l'encre est supérieure à 25°C","Que la vitesse est au maximum autorisé"], c:0, exp:"Lors du réglage de la racle, il est crucial que le presseur ne touche pas la bavette pour éviter les fuites d'encre et les défauts d'impression." },
+  { m:'brio', q:"Comment s'effectue le repérage manuel ?", opts:["Via le bouton 'Mode Auto' de l'automate","Via les boutons de déplacement latéral et longitudinal","En déplaçant physiquement le chariot à la main"], c:1, exp:"Le repérage manuel consiste à centrer les repères en utilisant les boutons latéral (décalage transversal) et longitudinal (décalage en marche)." },
+  { m:'brio', q:"Quel outil métrologique utilise-t-on pour mesurer la viscosité de l'encre ?", opts:["Un thermomètre à immersion","La coupe AFNOR normalisée","Un densimètre à flotteur"], c:1, exp:"La coupe AFNOR est le viscosimètre de référence dans l'industrie de l'impression. Elle mesure le temps d'écoulement, directement lié à la viscosité." },
+  { m:'brio', q:"Quand doit-on arrêter le chronomètre lors du test de viscosité à la coupe AFNOR ?", opts:["Dès que la coupe est totalement vide","Dès que le filet d'encre se rompt (premier arrêt)","Exactement au bout de 20 secondes"], c:1, exp:"La norme AFNOR impose d'arrêter le chronomètre au premier signe de rupture du filet d'encre pour garantir la reproductibilité de la mesure." },
+  { m:'brio', q:"Si la viscosité est trop élevée (encre trop visqueuse), que faut-il ajouter ?", opts:["De l'encre neuve plus fluide","Du solvant de dilution approprié","De l'eau déminéralisée"], c:1, exp:"On ajoute progressivement du solvant de dilution adapté au type d'encre pour fluidifier et atteindre la viscosité cible définie sur l'OF." },
+  { m:'brio', q:"À quelle fréquence minimale doit-on contrôler la viscosité de l'encre ?", opts:["Une seule fois en début de journée","Au démarrage, à chaque changement d'encre et périodiquement en production","Uniquement en fin de tirage"], c:1, exp:"Le contrôle de viscosité est continu : obligatoire au démarrage, après chaque appoint d'encre ou de solvant, et à intervalles réguliers durant la production." },
+  { m:'brio', q:"Quelle est la différence entre le montage en début de production et en cours de production ?", opts:["Début = machine à l'arrêt complet ; cours de production = en temps masqué sur bobine épuisée","Il n'existe aucune différence procédurale","Seuls les EPI requis diffèrent"], c:0, exp:"En début de production, le montage se fait machine arrêtée. En cours de production, il est réalisé en temps masqué lors de l'épuisement d'une bobine." },
+  { m:'brio', q:"Quel est l'ordre de montage des composants sur l'arbre expansible ?", opts:["Bague d'abord, puis cône ensuite","Cône d'abord, puis bague ensuite","Clavette d'abord, puis cône ensuite"], c:1, exp:"Le cône est toujours monté en premier pour guider l'insertion, puis la bague vient compléter l'assemblage et assurer l'expansion." },
+  { m:'brio', q:"Que faut-il ajouter si la fixation de l'arbre reste instable après serrage ?", opts:["Davantage d'encre de calage","Une rondelle de compensation avant le serrage final","Du ruban adhésif autour du mandrin"], c:1, exp:"Une rondelle de compensation permet de combler le jeu résiduel et d'obtenir une fixation stable et sûre de l'arbre dans le mandrin." },
+  { m:'brio', q:"Si l'ordre de fabrication indique le sens 'Conducteur', comment monter les accessoires ?", opts:["En sens inverse du VF (verso face)","Dans le même sens que le VF","L'orientation est sans incidence"], c:1, exp:"Le sens 'Conducteur' signifie que les accessoires doivent être orientés dans le même sens que le verso face (VF) pour garantir l'alignement d'impression." },
+  { m:'brio', q:"Quelle action corrective entreprendre en cas d'écart de teinte constaté ?", opts:["Augmenter la vitesse pour forcer l'étalement","Ajuster la viscosité de l'encre concernée","Remplacer le cylindre héliogravure"], c:1, exp:"Un écart de teinte ou de densité optique est le plus souvent corrigé par un ajustement de la viscosité, avant d'envisager d'autres actions correctives." },
+  { m:'brio', q:"Que surveille-t-on en priorité pour assurer la netteté de l'impression ?", opts:["La température des sécheurs","La lisibilité des textes, codes-barres et repères fins","Le poids de la bobine en cours"], c:1, exp:"La netteté se contrôle par la lisibilité des éléments critiques : textes fins, codes-barres, traits de repère. Tout manque de netteté est un défaut bloquant." },
+  { m:'brio', q:"Quelle caméra le conducteur doit-il surveiller en continu pendant la production ?", opts:["La caméra de surveillance sécurité atelier","La caméra d'inspection recto/verso en ligne","Le retour d'image du smartphone connecté"], c:1, exp:"La caméra d'inspection recto/verso est un outil de contrôle qualité en temps réel. Le conducteur doit la surveiller en permanence pour détecter tout défaut immédiatement." },
+  { m:'brio', q:"Quel bouton assure la mise en contact du presseur avec le cylindre héliogravure ?", opts:["Bouton 'Coupe' (activation lame)","Bouton 'Presseur' (mise en contact)","Bouton 'Rotation' (entraînement)"], c:1, exp:"Le bouton 'Presseur' commande le vérin qui amène le rouleau presseur en contact avec le cylindre pour permettre le transfert d'encre sur le support." },
+  { m:'brio', q:"Comment assure-t-on un bon roulage de la bobine sur l'arbre avant expansion ?", opts:["En appliquant de l'huile de lubrification","En entourant l'arbre avec du ruban adhésif spécial","En augmentant progressivement la vitesse de montage"], c:1, exp:"Le ruban adhésif sur l'arbre augmente la friction et empêche le glissement de la bobine avant que la pression d'expansion ne soit appliquée." },
+  { m:'brio', q:"Quel équipement utilise-t-on pour déplacer le cylindre vers la zone de stockage ?", opts:["Le chariot dédié au transport des cylindres","Le déplacement à la main par deux opérateurs","Le transpalette manuel standard"], c:0, exp:"Le cylindre doit être placé et transporté dans le chariot prévu à cet effet pour garantir sa protection mécanique et la sécurité des opérateurs." },
+  { m:'brio', q:"Quelle étape précède le versement de l'encre dans le bac lors du montage couleur ?", opts:["Le nettoyage du bac à l'eau","L'activation de l'embrayage pour réactiver le moteur de pompe","Le passage en mode séchage"], c:1, exp:"L'activation de l'embrayage remet en route le moteur d'entraînement de la pompe à encre, permettant la circulation avant même de verser l'encre." },
+  { m:'brio', q:"Quel élément de réglage corrige une déviation latérale du film ?", opts:["L'angle de la racle","Les guides latéraux de guidage film","La valeur de viscosité"], c:1, exp:"Les guides latéraux permettent de centrer et corriger la trajectoire du film en cas de dérive transversale, évitant les mauvais repérages latéraux." },
+  { m:'brio', q:"Comment vérifie-t-on que l'encre est correctement sèche lors du contrôle de supervision ?", opts:["Par l'observation visuelle de la couleur","Par le test au toucher (absence de collant résiduel)","Par contrôle olfactif (absence d'odeur de solvant)"], c:1, exp:"Le test au toucher est la méthode standard de contrôle du séchage en production. L'encre sèche ne doit laisser aucune trace ni adhérence sur le doigt ganté." },
+  { m:'auto', q:"Quelle est la première étape à effectuer dans l'automate pour démarrer le réglage automatique sur la BRIO ?", opts:["Cliquer sur Formats et insérer le développement","Cliquer sur Gestion des tâches, sélectionner la tâche puis cliquer sur Préparer","Cliquer sur Machine affectation et choisir les blocs"], c:1, exp:"La procédure de réglage automatique commence obligatoirement par 'Gestion des tâches' : on sélectionne la tâche concernée puis on clique sur 'Préparer' avant toute autre action." },
+  { m:'auto', q:"Dans l'étape 'Données des tâches', quels champs faut-il obligatoirement remplir avant d'enregistrer ?", opts:["Vitesse, température et pression","Client, Tâche et Description","Développement, laize et nombre de couleurs"], c:1, exp:"L'écran 'Données des tâches' impose de renseigner les champs Client, Tâche et Description, puis de valider en cliquant sur Enregistrer avant de passer à l'étape suivante." },
+  { m:'auto', q:"Lors de l'étape 'Formats', quelle valeur doit-on insérer dans le champ prévu à cet effet ?", opts:["La vitesse de production cible","Le développement cité dans l'Ordre de Fabrication (OF)","Le nombre de bobines disponibles en stock"], c:1, exp:"Dans l'étape Formats, l'opérateur doit saisir le développement (périmètre du cylindre) tel qu'indiqué sur l'Ordre de Fabrication, puis enregistrer." },
+  { m:'auto', q:"Lors du paramétrage de 'Machine affectation', quelle action faut-il réaliser ?", opts:["Entrer la viscosité de chaque encre couleur par couleur","Choisir les blocs d'impression avec lesquels on va travailler puis enregistrer","Sélectionner le type de film et la laize de la bobine"], c:1, exp:"Dans 'Machine affectation', le conducteur sélectionne les blocs (groupes d'impression) qui seront utilisés pour le travail en cours, puis valide par Enregistrer." },
+  { m:'auto', q:"Quelle est la dernière action à effectuer dans l'automate avant de lancer la production ?", opts:["Revenir sur Gestion des tâches et cliquer sur Chargement, puis visualiser le pointage sur Production","Cliquer sur Caractéristiques et vérifier les couleurs","Remplir les champs d'Affectation groupe impression par 20"], c:0, exp:"La dernière séquence consiste à retourner sur 'Gestion des tâches', cliquer sur 'Chargement' pour transférer tous les paramètres, puis passer à 'Production' pour visualiser le pointage." }
+];
+
+const LETTERS = ['A','B','C'];
+let cur = 0, score = 0, answered = [], timerInterval = null, timeLeft = TIMER_DURATION;
+let conductor = {}, quizStartDate = '', quizStartTime = '';
+let quizQuestions = []; // sera initialisé avec les questions mélangées
+
+// Fonction pour mélanger les options d'une question et mettre à jour l'index correct
+function shuffleQuestion(q) {
+  // Créer un tableau d'objets {texte, estCorrect}
+  const options = q.opts.map((opt, idx) => ({ texte: opt, estCorrect: idx === q.c }));
+  // Mélanger (Fisher-Yates)
+  for (let i = options.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [options[i], options[j]] = [options[j], options[i]];
+  }
+  // Reconstruire opts et trouver le nouvel index correct
+  const newOpts = options.map(o => o.texte);
+  const newC = options.findIndex(o => o.estCorrect);
+  return {
+    m: q.m,
+    q: q.q,
+    opts: newOpts,
+    c: newC,
+    exp: q.exp
+  };
+}
+
+// Mélanger toutes les questions (copie profonde)
+function shuffleAllQuestions() {
+  return BASE_QUESTIONS.map(q => shuffleQuestion(JSON.parse(JSON.stringify(q))));
+}
+
+function updateClock() {
+  const now = new Date();
+  const d = now.toLocaleDateString('fr-FR', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  const t = now.toLocaleTimeString('fr-FR');
+  const df = document.getElementById('form-date'), tf = document.getElementById('form-time');
+  if (df) df.textContent = d;
+  if (tf) tf.textContent = t;
+}
+setInterval(updateClock, 1000); updateClock();
+
+function startQuiz() {
+  const nom = document.getElementById('f-nom').value.trim();
+  const mat = document.getElementById('f-matricule').value.trim();
+  const poste = document.getElementById('f-poste').value.trim();
+  const equipe = document.getElementById('f-equipe').value;
+  const responsable = document.getElementById('f-responsable').value.trim();
+  const dept = document.getElementById('f-dept').value.trim();
+
+  if (!nom || !mat || !poste || !equipe || !responsable || !dept) {
+    alert('Veuillez remplir tous les champs obligatoires (*) avant de démarrer.');
+    return;
+  }
+
+  conductor = { nom, matricule: mat, poste, equipe, responsable, dept };
+  const now = new Date();
+  quizStartDate = now.toLocaleDateString('fr-FR', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  quizStartTime = now.toLocaleTimeString('fr-FR');
+
+  // Mélanger les questions pour cette session
+  quizQuestions = shuffleAllQuestions();
+
+  document.getElementById('form-screen').style.display = 'none';
+  document.getElementById('quiz-section').style.display = 'block';
+  cur = 0; score = 0; answered = []; load();
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timeLeft = TIMER_DURATION; updateTimerUI();
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerUI();
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      if (answered[cur] === undefined) { answered[cur] = -1; load(true); }
+    }
+  }, 1000);
+}
+
+function updateTimerUI() {
+  const fill = document.getElementById('timer-fill'), num = document.getElementById('timer-num');
+  if (!fill || !num) return;
+  fill.style.width = (timeLeft / TIMER_DURATION * 100) + '%';
+  num.textContent = timeLeft;
+  if (timeLeft <= 4) { fill.style.background = 'var(--red)'; num.className = 'timer-num urgent'; }
+  else if (timeLeft <= 7) { fill.style.background = '#f0a500'; num.className = 'timer-num'; }
+  else { fill.style.background = 'var(--green)'; num.className = 'timer-num'; }
+}
+
+function load(fromTimeout) {
+  const d = quizQuestions[cur], isAns = answered[cur] !== undefined;
+  const num = String(cur+1).padStart(2,'0');
+  const mt = document.getElementById('q-module-tag');
+  if (d.m === 'auto') { mt.className = 'q-module-tag module-auto'; mt.textContent = '⚙️ Module Réglage Automatique'; }
+  else { mt.className = 'q-module-tag module-brio'; mt.textContent = '🖨️ Module BRIO'; }
+  document.getElementById('q-tag').textContent = `Question ${num} / ${quizQuestions.length}`;
+  document.getElementById('q-num-bg').textContent = num;
+  document.getElementById('question-text').textContent = d.q;
+  document.getElementById('prog-label').textContent = `${cur+1} / ${quizQuestions.length}`;
+  document.getElementById('prog-fill').style.width = `${((cur+1)/quizQuestions.length)*100}%`;
+  let s = 0, w = 0;
+  answered.forEach((a, i) => { if (a === undefined) return; if (a === quizQuestions[i].c) s++; else w++; });
+  document.getElementById('stat-correct').textContent = s;
+  document.getElementById('stat-wrong').textContent = w;
+  const aCount = answered.filter(a => a !== undefined).length;
+  document.getElementById('stat-pct').textContent = aCount ? Math.round((s/aCount)*100)+'%' : '—';
+  score = s;
+  document.getElementById('options-list').innerHTML = d.opts.map((opt, i) => {
+    let cls = '';
+    if (isAns) {
+      if (i === d.c) cls = (answered[cur] === -1) ? ' timeout' : ' correct';
+      else if (answered[cur] === i) cls = ' wrong';
+    }
+    return `<li class="option${cls}${isAns?' disabled':''}" onclick="pick(${i})"><span class="opt-letter">${LETTERS[i]}</span><span class="opt-text">${opt}</span></li>`;
+  }).join('');
+  document.getElementById('exp-text').textContent = d.exp;
+  document.getElementById('explanation').style.display = isAns ? 'block' : 'none';
+  const ns = document.getElementById('nav-status');
+  if (isAns && answered[cur] === -1) { ns.innerHTML = '<span style="color:#f0a500;font-size:18px">⏰</span> Temps écoulé !'; ns.style.color = '#f0a500'; }
+  else if (isAns && answered[cur] === d.c) { ns.innerHTML = '<span style="color:var(--green);font-size:18px">✓</span> Bonne réponse'; ns.style.color = 'var(--green)'; }
+  else if (isAns) { ns.innerHTML = '<span style="color:var(--red);font-size:18px">✗</span> Mauvaise réponse'; ns.style.color = 'var(--red)'; }
+  else { ns.innerHTML = ''; }
+  document.getElementById('prev-btn').disabled = cur === 0;
+  document.getElementById('next-btn').textContent = cur === quizQuestions.length-1 ? 'Voir le résultat →' : 'Suivant →';
+  const card = document.getElementById('question-card');
+  card.style.animation = 'none'; card.offsetHeight; card.style.animation = 'fadeUp 0.38s cubic-bezier(0.23,1,0.32,1)';
+  if (!isAns) startTimer();
+  else { clearInterval(timerInterval); const fill = document.getElementById('timer-fill'), num2 = document.getElementById('timer-num'); if (fill) { fill.style.width = '0%'; fill.style.background = 'var(--border)'; } if (num2) { num2.textContent = '—'; num2.className = 'timer-num'; } }
+}
+
+function pick(i) {
+  if (answered[cur] !== undefined) return;
+  clearInterval(timerInterval); answered[cur] = i; load();
+}
+
+function changeQuestion(s) {
+  if (s === 1 && cur === quizQuestions.length-1) { showScore(); return; }
+  clearInterval(timerInterval);
+  cur = Math.max(0, Math.min(quizQuestions.length-1, cur+s)); load();
+}
+
+function showScore() {
+  clearInterval(timerInterval);
+  document.getElementById('quiz-section').style.display = 'none';
+  document.getElementById('score-screen').style.display = 'block';
+  const pct = Math.round((score/quizQuestions.length)*100), wrong = quizQuestions.length - score;
+  document.getElementById('sc-num').textContent = score;
+  document.getElementById('sc-den').textContent = `/ ${quizQuestions.length}`;
+  document.getElementById('chip-ok').textContent = `✓ ${score} correctes`;
+  document.getElementById('chip-ko').textContent = `✗ ${wrong} incorrectes`;
+  document.getElementById('chip-pct').textContent = `${pct}%`;
+  let title, msg, color;
+  if (pct >= 85) { title = '🏆 Certifié BRIO'; msg = "Excellente maîtrise opérationnelle. Vous êtes certifié pour la conduite de l'imprimeuse BRIO."; color = 'var(--green)'; }
+  else if (pct >= 70) { title = '📋 Qualification partielle'; msg = 'Bonne connaissance générale. Quelques points restent à consolider avant la validation finale.'; color = 'var(--primary-light)'; }
+  else { title = '📚 Formation complémentaire requise'; msg = 'Des lacunes importantes ont été détectées. Une révision approfondie et une nouvelle session sont recommandées.'; color = 'var(--red)'; }
+  document.getElementById('sc-title').textContent = title;
+  document.getElementById('sc-title').style.color = color;
+  document.getElementById('sc-msg').textContent = msg;
+  setTimeout(() => { const rf = document.getElementById('ring-fill'); rf.style.strokeDashoffset = 440 - (pct/100)*440; rf.style.stroke = color; }, 100);
+}
+
+function downloadFiche(mode) {
+  const pct = Math.round((score/quizQuestions.length)*100), wrong = quizQuestions.length - score;
+  const endDate = new Date().toLocaleDateString('fr-FR', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  const endTime = new Date().toLocaleTimeString('fr-FR');
+  let obs = '';
+  if (pct >= 90) obs = "CERTIFIÉ — Habilité à conduire l'imprimeuse BRIO de manière autonome.";
+  else if (pct >= 70) obs = 'QUALIFICATION PARTIELLE — Un recyclage sur les points non maîtrisés est requis avant validation définitive.';
+  else obs = 'NON CERTIFIÉ — Formation complémentaire obligatoire. Une nouvelle évaluation doit être planifiée.';
+
+  const obsColor = pct>=90 ? '#0F7E4A' : pct>=70 ? '#2D72D2' : '#C0392B';
+  const obsBg = pct>=90 ? '#e6f5ee' : pct>=70 ? 'rgba(45,114,210,0.08)' : '#fdeeec';
+  const ringPct = pct;
+
+  const LOGO_SRC = "data:image/jpeg;base64,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";
+
+  // Construction du HTML de la fiche (avec règles pour masquer l'URL)
+  const ficheHTML = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche Certification BRIO — ${conductor.nom}</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; padding: 24px; color: #0D1F33; font-size: 12px; }
+  .header { display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #0B2E5F; padding-bottom: 16px; margin-bottom: 20px; }
+  .header-left { display: flex; align-items: center; gap: 16px; }
+  .header-logo { background: white; border: 1px solid #D0DDE8; border-radius: 8px; padding: 6px 14px; display: flex; align-items: center; }
+  .header-logo img { height: 44px; width: auto; }
+  .company { font-size: 14px; font-weight: 700; color: #0B2E5F; }
+  .company span { display: block; font-size: 10px; color: #6B85A0; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+  .header-right { text-align: right; font-size: 11px; color: #6B85A0; line-height: 1.7; }
+  h1 { font-size: 20px; color: #0B2E5F; margin: 0 0 4px; text-align:center; font-weight: 800; }
+  .subtitle { text-align:center; color:#6B85A0; font-size:11px; margin-bottom:22px; }
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 28px; background: #EEF3F9; border: 1px solid #D0DDE8; border-radius: 10px; padding: 18px 22px; margin-bottom: 22px; }
+  .info-item { display: flex; gap: 8px; align-items: baseline; }
+  .info-item label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #6B85A0; min-width: 120px; }
+  .info-item span { font-size: 12px; font-weight: 600; color: #0D1F33; }
+  .score-section { display: flex; align-items: center; justify-content: center; gap: 36px; margin-bottom: 22px; }
+  .score-ring-wrap { position: relative; width: 130px; height: 130px; flex-shrink: 0; }
+  .score-ring-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .score-ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .score-big { font-size: 36px; font-weight: 800; color: #0D1F33; line-height: 1; }
+  .score-small { font-size: 12px; color: #6B85A0; }
+  .score-chips { display: flex; flex-direction: column; gap: 10px; }
+  .s-chip { padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 700; text-align: center; min-width: 160px; }
+  .obs-box { border: 2px solid; border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; }
+  .obs-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .obs-text { font-size: 13px; font-weight: 700; }
+  .signature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; }
+  .sig-box { border-top: 2px solid #0B2E5F; padding-top: 8px; }
+  .sig-box label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #6B85A0; }
+  .sig-name { font-size: 12px; font-weight: 600; color: #0D1F33; margin-top: 36px; }
+  .footer { text-align: center; font-size: 9px; color: #9aafbf; margin-top: 20px; border-top: 1px solid #D0DDE8; padding-top: 10px; }
+  @media print {
+    @page {
+      margin: 0;
+    }
+    body {
+      margin: 1.5cm;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-left">
+    <div class="header-logo"><img src="${LOGO_SRC}" alt="Amcor" style="height:44px;width:auto;"></div>
+    <div class="company">Amcor Flexibles <span>Mohammedia · Maroc</span></div>
+  </div>
+  <div class="header-right">
+    <div>Début : ${quizStartDate} · ${quizStartTime}</div>
+    <div>Fin &nbsp;: ${endDate} · ${endTime}</div>
+  </div>
+</div>
+
+<h1>Fiche de Résultat — Certification Opérationnelle BRIO</h1>
+<div class="subtitle">Évaluation des compétences de conduite machine · 40 questions · 15 s / question</div>
+
+<div class="info-grid">
+  <div class="info-item"><label>Nom complet</label><span>${conductor.nom}</span></div>
+  <div class="info-item"><label>Matricule</label><span>${conductor.matricule}</span></div>
+  <div class="info-item"><label>Poste / Fonction</label><span>${conductor.poste}</span></div>
+  <div class="info-item"><label>Équipe</label><span>${conductor.equipe}</span></div>
+  <div class="info-item"><label>Resp. de Production</label><span>${conductor.responsable}</span></div>
+  <div class="info-item"><label>Département</label><span>${conductor.dept}</span></div>
+</div>
+
+<div class="score-section">
+  <div class="score-ring-wrap">
+    <svg viewBox="0 0 130 130">
+      <circle fill="none" stroke="#D0DDE8" stroke-width="11" cx="65" cy="65" r="54"/>
+      <circle fill="none" stroke="${obsColor}" stroke-width="11" cx="65" cy="65" r="54"
+        stroke-dasharray="339.3" stroke-dashoffset="${339.3 - (ringPct/100)*339.3}"
+        stroke-linecap="round"/>
+    </svg>
+    <div class="score-ring-center">
+      <div class="score-big" style="color:${obsColor}">${pct}%</div>
+      <div class="score-small">${score} / ${quizQuestions.length}</div>
+    </div>
+  </div>
+  <div class="score-chips">
+    <div class="s-chip" style="background:#e6f5ee;color:#0F7E4A;border:1.5px solid rgba(15,126,74,0.3);">✓ ${score} correctes</div>
+    <div class="s-chip" style="background:#fdeeec;color:#C0392B;border:1.5px solid rgba(192,57,43,0.3);">✗ ${wrong} incorrectes</div>
+    <div class="s-chip" style="background:#EEF3F9;color:#0B2E5F;border:1.5px solid #D0DDE8;">📋 40 questions · 15 s/q</div>
+  </div>
+</div>
+
+<div class="obs-box" style="border-color:${obsColor};background:${obsBg}">
+  <div class="obs-title" style="color:${obsColor}">📋 Observation / Décision</div>
+  <div class="obs-text" style="color:${obsColor}">${obs}</div>
+</div>
+
+<div class="signature-row">
+  <div class="sig-box">
+    <label>Signature du conducteur</label>
+    <div class="sig-name">${conductor.nom}</div>
+  </div>
+  <div class="sig-box">
+    <label>Visa du Responsable de Production</label>
+    <div class="sig-name">${conductor.responsable}</div>
+  </div>
+</div>
+
+<div class="footer">
+  Document généré automatiquement — Amcor Flexibles Mohammedia · Système de Certification BRIO · ${endDate}
+</div>
+</body>
+</html>`;
+
+  // Impression via iframe (mode 'print')
+  const iframe = document.getElementById('printFrame');
+  iframe.onload = function() {
+    iframe.contentDocument.open();
+    iframe.contentDocument.write(ficheHTML);
+    iframe.contentDocument.close();
+    setTimeout(() => {
+      iframe.contentWindow.print();
+    }, 100);
+  };
+  iframe.src = 'about:blank';
+}
+
+function restart() {
+  clearInterval(timerInterval); cur = 0; score = 0; answered = [];
+  document.getElementById('score-screen').style.display = 'none';
+  document.getElementById('form-screen').style.display = 'block';
+}
+</script>
+</body>
+</html>
